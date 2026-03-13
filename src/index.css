@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@import "tailwindcss";
+
+/* Dark mode variant — .dark is on <html>, so match any descendant */
+@variant dark (.dark &);
+
+/* Global font in dark mode */
+.dark body {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+}
+.dark svg, .dark svg * {
+  font-family: inherit;
+}
+
+@theme {
+  --color-primary: #5044e5;
+}
+
+/* SVG ring rotation — Skills orbital */
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.orbit-spin {
+  transform-origin: 50% 50%;
+  animation: orbit-spin 25s linear infinite;
+}
+
+/* SVG ring line colors (used in Skills orbital — SVG can't use Tailwind dark: variants) */
+:root {
+  --ring-line-color: rgba(100, 100, 100, 0.12);
+  --ring-dot-color:  rgba(100, 100, 100, 0.18);
+}
+.dark {
+  --ring-line-color: rgba(255, 255, 255, 0.07);
+  --ring-dot-color:  rgba(255, 255, 255, 0.15);
+}
