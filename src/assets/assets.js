@@ -13,6 +13,10 @@ import certif3 from "./certif3.png";
 import certif4 from "./certif4.png";
 import certif5 from "./certif5.png";
 import certif6 from "./certif6.png";
+import proj1 from "./proj1.png";
+import proj2 from "./proj2.png";
+import proj3 from "./proj3.png";
+import proj4 from "./proj4.png";
 
 const assets = {
   logo,
@@ -29,7 +33,11 @@ const assets = {
   certif3,
   certif4,
   certif5,
-  certif6
+  certif6,
+  proj1,
+  proj2,
+  proj3,
+  proj4
 };
 
 export default assets;

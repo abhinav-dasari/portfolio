@@ -1,4 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const B = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
 
@@ -69,6 +73,44 @@ const Skills = ({ theme }) => {
     const lineColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(120,120,120,0.15)';
     const dotColor = isDark ? 'rgba(255,255,255,0.20)' : 'rgba(120,120,120,0.30)';
 
+    const titleRef = useRef(null);
+
+    useEffect(() => {
+        if (!titleRef.current) return;
+        const charElements = titleRef.current.querySelectorAll('.word');
+        gsap.fromTo(charElements,
+            {
+                willChange: 'opacity, transform',
+                opacity: 0,
+                yPercent: 120,
+                scaleY: 2.3,
+                scaleX: 0.7,
+                transformOrigin: '50% 0%'
+            },
+            {
+                duration: 1,
+                ease: 'back.inOut(2)',
+                opacity: 1,
+                yPercent: 0,
+                scaleY: 1,
+                scaleX: 1,
+                stagger: 0.03,
+                scrollTrigger: {
+                    trigger: titleRef.current,
+                    start: 'center bottom+=50%',
+                    end: 'bottom bottom-=40%',
+                    scrub: true
+                }
+            }
+        );
+    }, []);
+
+    const titleText = "Technologies I Work With".split('').map((char, index) => (
+        <span className="inline-block word" key={index}>
+            {char === ' ' ? '\u00A0' : char}
+        </span>
+    ));
+
     // requestAnimationFrame-driven rotation — no CSS keyframes needed
     const [angle, setAngle] = useState(0);
     const rafRef = useRef(null);
@@ -89,14 +131,14 @@ const Skills = ({ theme }) => {
     }, []);
 
     return (
-        <section id="skills" className="py-24 px-4 sm:px-12 lg:px-24 xl:px-40 bg-white dark:bg-black">
+        <section id="skills" className="py-24 px-4 sm:px-12 lg:px-24 xl:px-40">
 
             {/* Header */}
             <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
                 Skills
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-16">
-                Technologies I Work With
+            <h2 ref={titleRef} className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-16 overflow-hidden">
+                {titleText}
             </h2>
 
             {/* Orbital container */}

@@ -8,7 +8,7 @@ const Navbar = ({ theme, setTheme }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     return (
         <div className="flex justify-between items-center px-4
-        sm:px-12 lg:px-24 xl:px-40 py-2 sticky top-0 z-20
+        sm:px-12 lg:px-24 xl:px-40 py-2 fixed w-full top-0 z-50
         backdrop-blur-xl font-medium bg-white/50 dark:bg-gray-900/70">
 
             {/* Logo links to hero section */}
@@ -27,9 +27,9 @@ const Navbar = ({ theme, setTheme }) => {
                 <a onClick={()=>setSidebarOpen(false)} href="#hero" className='sm:hover:border-b'>Home</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#about" className='sm:hover:border-b'>About</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#skills" className='sm:hover:border-b'>Skills</a>
-                <a onClick={()=>setSidebarOpen(false)} href="#project" className='sm:hover:border-b'>Projects</a>
+                <a onClick={()=>setSidebarOpen(false)} href="#projects" className='sm:hover:border-b'>Projects</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#cer" className='sm:hover:border-b'>Certificates</a>
-                <a onClick={()=>setSidebarOpen(false)} href="#edu" className='sm:hover:border-b'>Education</a>
+                <a onClick={()=>setSidebarOpen(false)} href="#education" className='sm:hover:border-b'>Education</a>
             </div>
 
             <div className='flex items-center gap-2 sm:gap-4'>
