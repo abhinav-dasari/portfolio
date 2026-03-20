@@ -4,6 +4,7 @@ import assets from '../assets/assets';
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
 import { motion, useMotionValue, useTransform, useInView, animate } from 'motion/react';
+import TiltedCard from '../components/TiltedCard';
 
 gsap.registerPlugin(TextPlugin);
 
@@ -16,7 +17,7 @@ const Hero = () => {
     const titleVal = useMotionValue(0);
     const rawTitle = "Hi, I'm Abhinav";
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+";
-    
+
     const displayTitle = useTransform(titleVal, (latest) => {
         let result = "";
         for (let i = 0; i < rawTitle.length; i++) {
@@ -89,7 +90,7 @@ const Hero = () => {
 
                 {/* Heading */}
                 <div className="mb-6 lg:mb-10 min-h-[90px] xl:min-h-[100px]">
-                    <motion.h1 
+                    <motion.h1
                         ref={titleRef}
                         onMouseEnter={triggerDecrypt}
                         className="text-3xl sm:text-4xl lg:text-5xl font-thin text-gray-900 dark:text-white mb-2 tracking-tight block w-max cursor-default"
@@ -119,14 +120,27 @@ const Hero = () => {
             {/* Right side: Profile Photo */}
             <div className="relative z-10 group w-full lg:w-[45%] flex justify-center lg:justify-end">
                 <div className="relative w-48 h-56 sm:w-56 sm:h-72 lg:w-[260px] lg:h-[320px] xl:w-[280px] xl:h-[360px]">
-                    <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-primary/40 to-purple-500/30 blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-                    <div className="relative w-full h-full rounded-3xl overflow-hidden border border-gray-200/20 dark:border-white/10 shadow-2xl">
-                        <img
-                            src={assets.profile}
-                            alt="Abhinav Dasari"
-                            className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
-                        />
-                    </div>
+                    <TiltedCard
+                        captionText="Abhinav Dasari"
+                        containerHeight="100%"
+                        containerWidth="100%"
+                        imageHeight="100%"
+                        imageWidth="100%"
+                        rotateAmplitude={12}
+                        scaleOnHover={1.05}
+                        showMobileWarning={false}
+                        showTooltip={true}
+                        displayOverlayContent={false}
+                    >
+                        <div className="absolute -inset-1 rounded-[15px] bg-gradient-to-br from-primary/40 to-purple-500/30 blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500 will-change-transform [transform:translateZ(-20px)]"></div>
+                        <div className="relative w-full h-full rounded-[15px] shadow-2xl z-10 overflow-hidden will-change-transform [transform:translateZ(10px)] bg-black/5 dark:bg-white/5">
+                            <img
+                                src={assets.profile}
+                                alt="Abhinav Dasari"
+                                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                            />
+                        </div>
+                    </TiltedCard>
                 </div>
             </div>
 

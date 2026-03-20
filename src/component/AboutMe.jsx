@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Magnet from '../components/Magnet';
+import StarBorder from '../components/StarBorder';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,19 +136,20 @@ const AboutMe = () => {
                         <h3 className="text-sm font-semibold tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-4">
                             Interests
                         </h3>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-3">
                             {interests.map((interest) => (
-                                <span
-                                    key={interest}
-                                    className="text-xs font-medium px-3 py-1.5 rounded-full
-                                               bg-white dark:bg-gray-800
-                                               border border-gray-200 dark:border-gray-700
-                                               text-gray-700 dark:text-gray-300
-                                               hover:border-primary hover:text-primary
-                                               transition-colors duration-200 cursor-default"
-                                >
-                                    {interest}
-                                </span>
+                                <Magnet key={interest} padding={50} disabled={false} magnetStrength={10}>
+                                    <StarBorder
+                                        as="div"
+                                        className="!rounded-full"
+                                        color="#5044e5"
+                                        speed="4s"
+                                        thickness={1.5}
+                                        innerClassName="relative z-1 text-xs font-medium px-4 py-2 rounded-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors duration-200 cursor-default block"
+                                    >
+                                        {interest}
+                                    </StarBorder>
+                                </Magnet>
                             ))}
                         </div>
 

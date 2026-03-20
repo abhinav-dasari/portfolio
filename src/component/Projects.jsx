@@ -1,6 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import assets from '../assets/assets';
+import GlassIcons from '../components/GlassIcons';
+import { Code, Database, Monitor, Cpu, Box, Cloud, Settings, Layers, Hash } from 'lucide-react';
+
+const getTechDetails = (techName) => {
+  const map = {
+    'Python': { icon: <Code />, color: 'blue' },
+    'OpenCV': { icon: <Monitor />, color: 'indigo' },
+    'React': { icon: <Layers />, color: 'purple' },
+    'Node.js': { icon: <Box />, color: 'green' },
+    'MongoDB': { icon: <Database />, color: 'green' },
+    'Express': { icon: <Settings />, color: 'orange' },
+    'Stripe': { icon: <Cloud />, color: 'purple' },
+    'Scikit-learn': { icon: <Cpu />, color: 'orange' },
+    'TensorFlow': { icon: <Box />, color: 'red' },
+    'Flask': { icon: <Monitor />, color: 'gray' },
+    'PyTorch': { icon: <Cpu />, color: 'red' },
+    'Django REST': { icon: <Code />, color: 'green' },
+  };
+  return map[techName] || { icon: <Hash />, color: 'blue' };
+};
 
 const projects = [
   {
@@ -163,19 +183,17 @@ const Projects = () => {
                 {p.description}
               </p>
 
-              <div className="flex flex-col gap-2 text-xs tracking-[0.15em] mb-8">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col gap-2 text-xs tracking-[0.15em] mb-4">
+                <div className="flex flex-col items-start gap-4">
                   <span className="text-gray-400 uppercase w-20">Stack</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-0.5 rounded-full border text-[10px] font-medium"
-                        style={{ borderColor: p.accent + '66', color: p.accent, backgroundColor: p.accent + '11' }}
-                      >
-                        {t}
-                      </span>
-                    ))}
+                  <div className="w-full text-[10px] mt-2 pb-6">
+                    <GlassIcons
+                      items={p.tech.map((t) => {
+                        const iconData = getTechDetails(t);
+                        return { icon: iconData.icon, color: iconData.color, label: t };
+                      })}
+                      className="!py-0 !mx-0 !gap-[3.5em] !grid-cols-4 sm:!grid-cols-5"
+                    />
                   </div>
                 </div>
               </div>
