@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './component/Navbar';
 import Hero from './component/Hero';
 import AboutMe from './component/AboutMe';
@@ -7,6 +8,7 @@ import Projects from './component/Projects';
 import Certificates from './component/Certificates';
 import Education from './component/Education';
 import ContactMe from './component/ContactMe';
+import Resume from './component/Resume';
 import assets from './assets/assets';
 import { Renderer, Transform, Vec3, Color, Polyline } from 'ogl';
 
@@ -144,17 +146,26 @@ const App = () => {
       <div ref={canvasContainerRef} className="fixed inset-0 z-0 w-screen h-screen overflow-hidden" />
 
       <div className="relative z-10">
-        <Navbar theme={theme} setTheme={setTheme} />
-        <Hero theme={theme} setTheme={setTheme} />
-        <AboutMe theme={theme} />
-        <Skills theme={theme} />
-        <Projects />
-        <Certificates theme={theme} />
-        <Education />
-        <ContactMe theme={theme} />
+        <Routes>
+          <Route path="/" element={<MainPortfolio theme={theme} setTheme={setTheme} />} />
+          <Route path="/resume" element={<Resume />} />
+        </Routes>
       </div>
     </div>
   );
 };
+
+const MainPortfolio = ({ theme, setTheme }) => (
+  <>
+    <Navbar theme={theme} setTheme={setTheme} />
+    <Hero theme={theme} setTheme={setTheme} />
+    <AboutMe theme={theme} />
+    <Skills theme={theme} />
+    <Projects />
+    <Certificates theme={theme} />
+    <Education />
+    <ContactMe theme={theme} />
+  </>
+);
 
 export default App;
