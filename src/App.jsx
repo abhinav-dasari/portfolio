@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './component/Navbar';
 import Hero from './component/Hero';
 import AboutMe from './component/AboutMe';
@@ -10,6 +10,7 @@ import Education from './component/Education';
 import ContactMe from './component/ContactMe';
 import Resume from './component/Resume';
 import assets from './assets/assets';
+import Lanyard from './components/Lanyard';
 import { Renderer, Transform, Vec3, Color, Polyline } from 'ogl';
 
 const App = () => {
@@ -136,6 +137,9 @@ const App = () => {
     };
   }, []);
 
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
     <div className='relative'>
 
@@ -145,9 +149,24 @@ const App = () => {
       {/* Site-wide OGL Ribbons effect */}
       <div ref={canvasContainerRef} className="fixed inset-0 z-0 w-screen h-screen overflow-hidden" />
 
+      {/* Fixed Lanyard in top-right — only on home */}
+      {isHome && (
+        <div className="fixed top-0 right-0 z-20 w-80 h-screen pointer-events-none">
+          <Lanyard
+            position={[0, 0, 30]}
+            gravity={[0, -40, 0]}
+            fov={16}
+            transparent={true}
+            onDrop={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })}
+          />
+        </div>
+      )}
+
+      <Navbar theme={theme} setTheme={setTheme} />
+
       <div className="relative z-10">
         <Routes>
-          <Route path="/" element={<MainPortfolio theme={theme} setTheme={setTheme} />} />
+          <Route path="/" element={<MainPortfolio theme={theme} />} />
           <Route path="/resume" element={<Resume />} />
         </Routes>
       </div>
@@ -155,10 +174,9 @@ const App = () => {
   );
 };
 
-const MainPortfolio = ({ theme, setTheme }) => (
+const MainPortfolio = ({ theme }) => (
   <>
-    <Navbar theme={theme} setTheme={setTheme} />
-    <Hero theme={theme} setTheme={setTheme} />
+    <Hero theme={theme} />
     <AboutMe theme={theme} />
     <Skills theme={theme} />
     <Projects />

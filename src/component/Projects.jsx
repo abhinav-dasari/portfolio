@@ -2,24 +2,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import assets from '../assets/assets';
 import GlassIcons from '../components/GlassIcons';
+import BorderGlow from '../components/BorderGlow';
+import SplitTextTitle from '../components/SplitTextTitle';
+import ScrollRevealDescription from '../components/ScrollRevealDescription';
+import ProjectModal from '../components/ProjectModal';
 import { Code, Database, Monitor, Cpu, Box, Cloud, Settings, Layers, Hash } from 'lucide-react';
+
+const B = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
 
 const getTechDetails = (techName) => {
   const map = {
-    'Python': { icon: <Code />, color: 'blue' },
-    'OpenCV': { icon: <Monitor />, color: 'indigo' },
-    'React': { icon: <Layers />, color: 'purple' },
-    'Node.js': { icon: <Box />, color: 'green' },
-    'MongoDB': { icon: <Database />, color: 'green' },
-    'Express': { icon: <Settings />, color: 'orange' },
-    'Stripe': { icon: <Cloud />, color: 'purple' },
-    'Scikit-learn': { icon: <Cpu />, color: 'orange' },
-    'TensorFlow': { icon: <Box />, color: 'red' },
-    'Flask': { icon: <Monitor />, color: 'gray' },
-    'PyTorch': { icon: <Cpu />, color: 'red' },
-    'Django REST': { icon: <Code />, color: 'green' },
+    'Python': { icon: <img src={`${B}/python/python-original.svg`} alt="Python" className="w-full h-full object-contain drop-shadow-md" />, color: 'blue' },
+    'OpenCV': { icon: <img src={`${B}/opencv/opencv-original.svg`} alt="OpenCV" className="w-full h-full object-contain drop-shadow-md" />, color: 'indigo' },
+    'React': { icon: <img src={`${B}/react/react-original.svg`} alt="React" className="w-full h-full object-contain drop-shadow-md" />, color: 'purple' },
+    'Node.js': { icon: <img src={`${B}/nodejs/nodejs-original.svg`} alt="Node.js" className="w-full h-full object-contain drop-shadow-md" />, color: 'green' },
+    'MongoDB': { icon: <img src={`${B}/mongodb/mongodb-original.svg`} alt="MongoDB" className="w-full h-full object-contain drop-shadow-md" />, color: 'green' },
+    'Express': { icon: <img src={`${B}/express/express-original.svg`} alt="Express" className="w-full h-full object-contain bg-white/90 rounded-full p-0.5" />, color: 'orange' },
+    'Stripe': { icon: <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" className="w-full h-full object-contain bg-white/90 rounded p-1" />, color: 'purple' },
+    'Scikit-learn': { icon: <img src={`${B}/scikitlearn/scikitlearn-original.svg`} alt="Scikit-learn" className="w-full h-full object-contain drop-shadow-md" />, color: 'orange' },
+    'TensorFlow': { icon: <img src={`${B}/tensorflow/tensorflow-original.svg`} alt="TensorFlow" className="w-full h-full object-contain drop-shadow-md" />, color: 'red' },
+    'Flask': { icon: <img src={`${B}/flask/flask-original.svg`} alt="Flask" className="w-full h-full object-contain bg-white/90 rounded-full p-0.5" />, color: 'gray' },
+    'PyTorch': { icon: <img src={`${B}/pytorch/pytorch-original.svg`} alt="PyTorch" className="w-full h-full object-contain drop-shadow-md" />, color: 'red' },
+    'Django REST': { icon: <img src={`${B}/djangorest/djangorest-original.svg`} alt="Django REST" className="w-full h-full object-contain drop-shadow-md" />, color: 'green' },
   };
-  return map[techName] || { icon: <Hash />, color: 'blue' };
+  return map[techName] || { icon: <Hash className="w-full h-full" />, color: 'blue' };
 };
 
 const projects = [
@@ -30,6 +36,12 @@ const projects = [
     accent: '#7c3aed',
     image: assets.proj1,
     num: '01',
+    status: 'ACTIVE',
+    overview: 'An all-in-one Smart Parking platform that modernizes parking spot detection, driver guidance, and payment using AI and IoT. Designed to reduce traffic congestion and improve urban mobility.',
+    problem: 'Urban areas suffer from severe traffic congestion largely caused by drivers circulating to find parking. This leads to increased carbon emissions, wasted time, and driver frustration.',
+    solution: 'Deployed a network of cameras running real-time YOLO object detection to monitor parking spot availability. This data is fed into a fast centralized backend which updates a live mobile app for drivers.',
+    github: 'https://github.com/abhinav-dasari/Smart-Parking',
+    live: 'https://example.com'
   },
   {
     title: 'Lush',
@@ -38,6 +50,12 @@ const projects = [
     accent: '#059669',
     image: assets.proj2,
     num: '02',
+    status: 'COMPLETED',
+    overview: 'A premium full-stack e-commerce platform dedicated exclusively to organic and eco-friendly products. It features real-time inventory, secure Stripe checkout, and an intuitive admin dashboard.',
+    problem: 'Consumers looking for eco-friendly products often have to navigate fragmented marketplaces with poor user experiences, questionable product sourcing, and clunky payment gateways.',
+    solution: 'Built a unified, high-performance React frontend connected to a scalable Node.js/Express backend. Integrated MongoDB for robust product management and Stripe for frictionless, secure payments.',
+    github: 'https://github.com/abhinav-dasari/Lush',
+    live: 'https://example.com'
   },
   {
     title: 'Air & Water Monitoring Models',
@@ -46,6 +64,12 @@ const projects = [
     accent: '#2563eb',
     image: assets.proj3,
     num: '03',
+    status: 'IN PROGRESS',
+    overview: 'A machine-learning-driven environmental dashboard that analyzes live sensor data to predict and alert communities about dangerous spikes in air and water pollution.',
+    problem: 'Local governments and citizens lack accessible, predictive insights into imminent environmental hazards, often receiving warnings only after pollution levels have already become dangerous.',
+    solution: 'Developed predictive models using Scikit-learn and TensorFlow that consume historical and live IoT sensor data. A Flask API serves these predictions to a dynamic React dashboard for real-time public monitoring.',
+    github: 'https://github.com/abhinav-dasari/Air_and_Water_Monitoring_Models',
+    live: 'https://example.com'
   },
   {
     title: 'Deepfake Detection',
@@ -54,6 +78,12 @@ const projects = [
     accent: '#e11d48',
     image: assets.proj4,
     num: '04',
+    status: 'ACTIVE',
+    overview: 'An advanced deep learning pipeline designed to combat misinformation by accurately detecting AI-generated manipulations and deepfakes in video content through forensic frame-level analysis.',
+    problem: 'The rapid advancement of generative AI has led to a surge in highly realistic deepfakes, posing significant threats to personal identity, media integrity, and political stability.',
+    solution: 'Implemented a sophisticated neural network using PyTorch and OpenCV to analyze subtle spatiotemporal artifacts. Deployed the model via a scalable Django REST backend, accessible through a React web interface.',
+    github: 'https://github.com/abhinav-dasari/Deepfake-Detection',
+    live: 'https://example.com'
   },
 ];
 
@@ -83,6 +113,9 @@ const Projects = () => {
 
   // Track which project is currently in front for the left panel
   const [activeIndex, setActiveIndex] = useState(0);
+  
+  // Track selected project for modal
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     // Initial placement
@@ -156,7 +189,10 @@ const Projects = () => {
     <section id="projects" className="py-24 px-4 sm:px-12 lg:px-24 xl:px-40">
       {/* Header */}
       <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">Projects</p>
-      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-16">Things I've Built</h2>
+      <SplitTextTitle 
+          text="Things I've Built"
+          className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-16"
+      />
 
       {/* Layout: details left, cards right */}
       <div className="flex flex-col lg:flex-row items-start gap-12" style={{ minHeight: '560px' }}>
@@ -179,9 +215,18 @@ const Projects = () => {
                 {p.title}
               </h3>
 
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-sm">
-                {p.description}
-              </p>
+              {activeIndex === index && (
+                  <ScrollRevealDescription 
+                      text={p.description} 
+                      className="text-sm text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-sm" 
+                      disableScroll={true} 
+                  />
+              )}
+              {activeIndex !== index && (
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-sm opacity-0">
+                      {p.description}
+                  </p>
+              )}
 
               <div className="flex flex-col gap-2 text-xs tracking-[0.15em] mb-4">
                 <div className="flex flex-col items-start gap-4">
@@ -230,7 +275,8 @@ const Projects = () => {
               <div
                 key={i}
                 ref={(el) => { cardRefs.current[i] = el; }}
-                className="absolute top-1/2 left-1/2 rounded-xl border border-gray-800 overflow-hidden"
+                className="absolute top-1/2 left-1/2 rounded-xl border border-gray-800 overflow-visible cursor-pointer group"
+                onClick={() => setSelectedProject(p)}
                 style={{
                   width: CARD_W,
                   height: CARD_H,
@@ -239,36 +285,51 @@ const Projects = () => {
                   backfaceVisibility: 'hidden',
                 }}
               >
-                {/* Full-size image */}
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="w-full h-full object-cover"
-                />
-
-                {/* Accent top bar */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-1"
-                  style={{ backgroundColor: p.accent }}
-                />
-
-                {/* Title overlay at top */}
-                <div className="absolute top-0 left-0 right-0 px-5 pt-5 pb-8"
-                  style={{
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 100%)'
-                  }}
+                <BorderGlow 
+                  className="w-full h-full rounded-xl"
+                  backgroundColor="transparent"
+                  glowColor="40 80 80"
+                  borderRadius={12}
+                  animated={false}
                 >
-                  <p className="text-[10px] tracking-widest uppercase mb-1" style={{ color: p.accent }}>
-                    {p.num} / Projects
-                  </p>
-                  <h3 className="text-sm font-bold text-white leading-snug">{p.title}</h3>
-                </div>
+                  <div className="relative z-10 w-full h-full overflow-hidden rounded-xl bg-gray-900 border border-gray-800">
+                    {/* Full-size image */}
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Accent top bar */}
+                    <div
+                      className="absolute top-0 left-0 right-0 h-1"
+                      style={{ backgroundColor: p.accent }}
+                    />
+
+                    {/* Title overlay at top */}
+                    <div className="absolute top-0 left-0 right-0 px-5 pt-5 pb-8"
+                      style={{
+                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 100%)'
+                      }}
+                    >
+                      <p className="text-[10px] tracking-widest uppercase mb-1" style={{ color: p.accent }}>
+                        {p.num} / Projects
+                      </p>
+                      <h3 className="text-sm font-bold text-white leading-snug">{p.title}</h3>
+                    </div>
+                  </div>
+                </BorderGlow>
               </div>
             ))}
           </div>
         </div>
 
       </div>
+
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </section>
   );
 };

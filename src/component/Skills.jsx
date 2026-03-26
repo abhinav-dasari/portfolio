@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Magnet from '../components/Magnet';
+import StarBorder from '../components/StarBorder';
 
 gsap.registerPlugin(ScrollTrigger);
 

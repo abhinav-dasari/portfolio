@@ -1,5 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import assets from '../assets/assets';
+import BorderGlow from '../components/BorderGlow';
+import SplitTextTitle from '../components/SplitTextTitle';
+import ScrollRevealDescription from '../components/ScrollRevealDescription';
 
 const ContactMe = ({ theme }) => {
     const isDark = theme === 'dark';
@@ -30,18 +33,19 @@ const ContactMe = ({ theme }) => {
             </p>
 
             {/* Section Title */}
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center lg:text-left">
-                Contact Me
-            </h2>
+            <SplitTextTitle 
+                text="Contact Me"
+                className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center lg:text-left inline-block lg:block overflow-visible"
+            />
 
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
                 
                 {/* Left Side: Contact Info */}
                 <div className="flex flex-col gap-8">
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px]">
-                        I'm currently looking for new opportunities and my inbox is always open. 
-                        Whether you have a question or just want to say hi, I'll try my best to get back to you!
-                    </p>
+                    <ScrollRevealDescription 
+                        text="I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!"
+                        className="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px]"
+                    />
 
                     <div className="flex flex-col gap-6 mt-4">
                         <div className="flex items-center gap-4 group">
@@ -86,8 +90,14 @@ const ContactMe = ({ theme }) => {
                 </div>
 
                 {/* Right Side: Contact Form */}
-                <div className="bg-gray-50 dark:bg-gray-900/40 rounded-3xl p-6 sm:p-8 border border-gray-100 dark:border-gray-800">
-                    <form ref={formRef} onSubmit={onSubmit} className="flex flex-col gap-6">
+                <BorderGlow
+                    className="bg-gray-50 dark:bg-gray-900/40 rounded-3xl p-6 sm:p-8 border border-gray-100 dark:border-gray-800 w-full"
+                    backgroundColor="transparent"
+                    borderRadius={24}
+                    glowColor="40 80 80"
+                    animated={false}
+                >
+                    <form ref={formRef} onSubmit={onSubmit} className="flex flex-col gap-6 relative z-10 w-full">
                         
                         <div className="flex flex-col gap-2">
                             <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
@@ -141,7 +151,7 @@ const ContactMe = ({ theme }) => {
                             </p>
                         )}
                     </form>
-                </div>
+                </BorderGlow>
 
             </div>
         </section>

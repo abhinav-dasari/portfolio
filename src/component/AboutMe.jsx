@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Magnet from '../components/Magnet';
 import StarBorder from '../components/StarBorder';
+import BorderGlow from '../components/BorderGlow';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -131,8 +132,14 @@ const AboutMe = () => {
                 </div>
 
                 {/* Interests Card */}
-                <div className="lg:col-span-2">
-                    <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/60 p-6">
+                <div className="lg:col-span-2 h-full">
+                    <BorderGlow 
+                        className="relative z-10 w-full h-full bg-gray-50 dark:bg-gray-900/60 rounded-2xl p-6 border border-gray-100 dark:border-gray-800"
+                        backgroundColor="transparent"
+                        glowColor="40 80 80"
+                        borderRadius={16}
+                        animated={false}
+                    >
                         <h3 className="text-sm font-semibold tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-4">
                             Interests
                         </h3>
@@ -167,7 +174,7 @@ const AboutMe = () => {
                                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Minor</p>
                             </div>
                         </div>
-                    </div>
+                    </BorderGlow>
                 </div>
 
             </div>
