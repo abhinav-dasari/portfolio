@@ -11,11 +11,22 @@ import ContactMe from './component/ContactMe';
 import Resume from './component/Resume';
 import assets from './assets/assets';
 import Lanyard from './components/Lanyard';
+import { FloatingPaths } from './components/ui/background-paths';
 import { Renderer, Transform, Vec3, Color, Polyline } from 'ogl';
 
 const App = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
   const canvasContainerRef = useRef(null);
+
+  // Sync dark class on <html> whenever theme changes
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     const container = canvasContainerRef.current;
@@ -139,6 +150,7 @@ const App = () => {
 
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const isResume = location.pathname === '/resume';
 
   return (
     <div className='relative'>
@@ -146,8 +158,16 @@ const App = () => {
       {/* Page background */}
       <div className="fixed inset-0 z-[-1] bg-white dark:bg-black" />
 
-      {/* Site-wide OGL Ribbons effect */}
-      <div ref={canvasContainerRef} className="fixed inset-0 z-0 w-screen h-screen overflow-hidden" />
+      {/* Floating SVG paths background — hidden on resume */}
+      {!isResume && (
+        <div className="fixed inset-0 z-0 w-screen h-screen overflow-hidden pointer-events-none">
+          <FloatingPaths position={1} />
+          <FloatingPaths position={-1} />
+        </div>
+      )}
+
+      {/* Site-wide OGL Ribbons effect - hidden on resume */}
+      {!isResume && <div ref={canvasContainerRef} className="fixed inset-0 z-0 w-screen h-screen overflow-hidden" />}
 
       {/* Fixed Lanyard in top-right — only on home */}
       {isHome && (
@@ -162,7 +182,8 @@ const App = () => {
         </div>
       )}
 
-      <Navbar theme={theme} setTheme={setTheme} />
+      {/* Navbar - hidden on resume page */}
+      {!isResume && <Navbar theme={theme} setTheme={setTheme} />}
 
       <div className="relative z-10">
         <Routes>
