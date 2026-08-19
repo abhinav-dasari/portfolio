@@ -11,7 +11,7 @@ const archiveProjects = [
   { year: "2024", title: "Marine Oil Spill Classification", category: "Machine Learning", tech: ["scikit-learn", "EDA", "Python"], repo: "https://github.com/Priyanshu-Upadhyay-27/Oil-Spill-Classification", live: "" },
   { year: "2024", title: "Content-Based Movie Recommender", category: "Machine Learning", tech: ["Cosine Similarity", "Streamlit", "Pandas"], repo: "https://github.com/Priyanshu-Upadhyay-27/Recommender-System", live: "" },
   { year: "2024", title: "WebMiner Toolkit", category: "Data Engineering", tech: ["BeautifulSoup", "Selenium", "Python"], repo: "https://github.com/Priyanshu-Upadhyay-27/WebMiner", live: "" },
-  { year: "2026", title: "Priyanshu Portfolio v1", category: "Frontend Web", tech: ["React", "TypeScript", "GSAP", "Tailwind"], repo: "https://github.com/Priyanshu-Upadhyay-27/priyanshu-portfolio", live: "" },
+  { year: "2026", title: "Abhinav Portfolio v1", category: "Frontend Web", tech: ["React", "TypeScript", "GSAP", "Tailwind"], repo: "https://github.com/Priyanshu-Upadhyay-27/priyanshu-portfolio", live: "" },
   { year: "2023", title: "Academic Full-Stack Prototype", category: "Web Development", tech: ["HTML", "CSS", "JavaScript"], repo: "https://github.com/Priyanshu-Upadhyay-27/Web-Dev-", live: "" }
 ];
 

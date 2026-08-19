@@ -268,7 +268,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
           lineHeight: 1
         }}
       >
-        P
+        A
       </div>
 
       {/* Logo Frame — unified white border that replaces the grid */}

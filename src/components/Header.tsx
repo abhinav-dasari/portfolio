@@ -105,10 +105,10 @@ const Header: React.FC = () => {
         {/* Logo */}
         <div className="header-logo">
           <span className="logo-name">
-            <span className="logo-p">P</span>
-            <span ref={riyanshuRef} style={{ opacity: 0, transform: 'translateX(-10px)', display: 'inline-block' }}>riyanshu</span>
+            <span className="logo-p">A</span>
+            <span ref={riyanshuRef} style={{ opacity: 0, transform: 'translateX(-10px)', display: 'inline-block' }}>bhinav</span>
           </span>
-          <span className="logo-surname" ref={surnameRef} style={{ opacity: 0, transform: 'translateX(-10px)', display: 'inline-block' }}>Upadhyay</span>
+          <span className="logo-surname" ref={surnameRef} style={{ opacity: 0, transform: 'translateX(-10px)', display: 'inline-block' }}>Dasari</span>
         </div>
 
         <div className="header-right" ref={rightNavRef} style={{ opacity: 0, transform: 'translateY(-10px)' }}>
@@ -118,7 +118,7 @@ const Header: React.FC = () => {
               <span>RESUME</span>
             </div>
             <div className="resume-btn-back">
-              <a href="/resume.pdf" download="priyanshu_upadhyay_resume.pdf" className="resume-icon-link" aria-label="Download Resume" title="Download">
+              <a href="/resume.pdf" download="abhinav_dasari_resume.pdf" className="resume-icon-link" aria-label="Download Resume" title="Download">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                   <polyline points="7 10 12 15 17 10" />

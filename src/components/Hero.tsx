@@ -215,7 +215,7 @@ const Hero = () => {
           const GAP = 0.02;         // tiny overlap between sequential paths
 
           // Snap container visible exactly when drawing begins
-          tl.set(signatureRef.current, { opacity: 1 }, 0.65);
+          tl.set(signatureRef.current, { opacity: 1, xPercent: -50, yPercent: -50 }, 0.65);
 
           // Phase B — Draw each path sequentially, left to right
           //   Each path's duration is proportional to its stroke length.
@@ -526,7 +526,7 @@ const Hero = () => {
         <img
           ref={portraitRef}
           src="/portrait_nobg3.png"
-          alt="Priyanshu Upadhyay — Applied AI Engineer"
+          alt="Abhinav Dasari — Applied AI Engineer"
           className="hero-L2__portrait"
         />
         {/* Dark overlay — fades to 50% during scroll */}

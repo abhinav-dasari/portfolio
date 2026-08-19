@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
           
           {/* LEFT COLUMN */}
           <div className="footer-col-left flex-1 flex flex-col justify-center items-center md:items-start gap-1">
-            <h3 className="footer-copyright m-0">© 2026 Priyanshu Upadhyay</h3>
+            <h3 className="footer-copyright m-0">© 2026 Abhinav Dasari</h3>
             <p className="footer-roles m-0">
               AI PRACTITIONER &bull; ML DEVELOPER &bull; GENAI BUILDER
             </p>

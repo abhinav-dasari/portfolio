@@ -116,7 +116,7 @@ const About: React.FC = () => {
         <div className="about-left" ref={textStackRef}>
 
           <h2 className="about-header reveal-up">
-            Hi, I'm <span className="about-name-accent">Priyanshu</span> —
+            Hi, I'm <span className="about-name-accent">Abhinav</span>
           </h2>
 
           <h3 className="about-typewriter reveal-up">
@@ -126,10 +126,10 @@ const About: React.FC = () => {
 
           <div className="about-bio-editorial reveal-mask">
             <p>
-              A 3rd-year CS undergrad at KIET focused on designing and building practical <strong>Machine Learning and GenAI systems</strong>. I don't just train models—I focus on the entire ML lifecycle, from writing robust data processing pipelines to deploying models as accessible REST APIs.
+              A 4th year CS undergrad at LPU focused on designing and building practical <strong>Machine Learning and GenAI systems</strong>. I don't just train models I focus on the entire ML lifecycle, from writing robust data processing pipelines to deploying models as accessible REST APIs.
             </p>
             <p>
-              Currently diving deep into the architecture of open-source ML libraries, mastering decoupled architectures using <strong>Docker</strong> and <strong>FastAPI</strong>, and building scalable systems that solve real-world problems. <strong>AWS Cloud Practitioner</strong> certified.
+              Building intelligent applications with <strong>LLMs, RAG, and AI agents</strong>, with a focus on open-source models, embeddings, vector databases, and scalable AI architectures. I use Python, FastAPI, Docker, and cloud technologies to develop production-ready AI systems that solve real-world problems.
             </p>
           </div>
         </div>
@@ -142,7 +142,7 @@ const About: React.FC = () => {
               <img
                 ref={portalImageBaseRef}
                 src="/head_out_portrait.png"
-                alt="Priyanshu Upadhyay Portrait Base"
+                alt="Abhinav Dasari Portrait Base"
                 className="portal-image-base"
               />
             </div>
@@ -151,7 +151,7 @@ const About: React.FC = () => {
               <img
                 ref={portalImageHeadRef}
                 src="/head_out_portrait.png"
-                alt="Priyanshu Upadhyay Portrait Head"
+                alt="Abhinav Dasari Portrait Head"
                 className="portal-image-head"
               />
             </div>

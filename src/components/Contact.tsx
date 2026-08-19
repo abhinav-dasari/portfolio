@@ -47,25 +47,30 @@ const Contact = () => {
     setIsSuccess(false);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          access_key: 'e5715bd6-92a0-4393-b533-87607f05c1be',
           name,
           email,
           message,
+          subject: `New Contact Form Message from ${name}`,
+          from_name: 'Portfolio Contact Form',
           'bot-field': honey,
         }),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
         setIsSuccess(true);
         setName('');
         setEmail('');
         setMessage('');
         setHoney('');
       } else {
-        console.error('Form submission failed:', response.status, response.statusText);
+        console.error('Form submission failed:', data);
         setIsError(true);
       }
     } catch (error) {
@@ -245,17 +250,17 @@ const Contact = () => {
 
           <div className="flex flex-col gap-6 w-full max-w-md mt-12">
             {/* Email Link */}
-            <a href="mailto:priyanshuupadhyay2005@gmail.com" className="flex items-center gap-4 group w-fit">
+            <a href="mailto:abhinavdasari05@gmail.com" className="flex items-center gap-4 group w-fit">
               <div className="w-12 h-12 flex items-center justify-center border border-white/10 group-hover:border-[#009394] group-hover:bg-[#009394]/10 transition-all text-zinc-300 group-hover:text-[#00E0C7]">
                 <Mail size={24} />
               </div>
               <span className="text-zinc-300 group-hover:text-[#00E0C7] font-sans text-base md:text-lg transition-all tracking-wide">
-                priyanshuupadhyay2005@gmail.com
+                abhinavdasari05@gmail.com
               </span>
             </a>
 
             {/* Github Link */}
-            <a href="https://github.com/Priyanshu-Upadhyay-27" target="_blank" rel="noreferrer" className="flex items-center gap-4 group w-fit">
+            <a href="https://github.com/abhinav-dasari" target="_blank" rel="noreferrer" className="flex items-center gap-4 group w-fit">
               <div className="w-12 h-12 flex items-center justify-center border border-white/10 group-hover:border-[#009394] group-hover:bg-[#009394]/10 transition-all text-zinc-300 group-hover:text-[#00E0C7]">
                 <Github size={24} />
               </div>
@@ -265,7 +270,7 @@ const Contact = () => {
             </a>
 
             {/* LinkedIn Link */}
-            <a href="https://linkedin.com/in/priyanshu-upadhyay-cse" target="_blank" rel="noreferrer" className="flex items-center gap-4 group w-fit">
+            <a href="https://www.linkedin.com/in/abhinav-dasari5/" target="_blank" rel="noreferrer" className="flex items-center gap-4 group w-fit">
               <div className="w-12 h-12 flex items-center justify-center border border-white/10 group-hover:border-[#009394] group-hover:bg-[#009394]/10 transition-all text-zinc-300 group-hover:text-[#00E0C7]">
                 <Linkedin size={24} />
               </div>
@@ -280,7 +285,7 @@ const Contact = () => {
                 <MapPin size={24} />
               </div>
               <span className="text-zinc-300 font-sans text-base md:text-lg group-hover:text-[#00E0C7] transition-all tracking-wide">
-                Delhi NCR, India
+                Jalandhar, Punjab, India
               </span>
             </div>
           </div>
